@@ -15,11 +15,6 @@ public class CorsConfig {
 
     @Bean
     public CorsWebFilter corsWebFilter() {
-        return new CorsWebFilter(corsConfigurationSource());
-    }
-
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
         config.setAllowedOrigins(List.of(
@@ -39,6 +34,6 @@ public class CorsConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
 
-        return (CorsConfigurationSource) source;
+        return new CorsWebFilter((CorsConfigurationSource) source);
     }
 }
