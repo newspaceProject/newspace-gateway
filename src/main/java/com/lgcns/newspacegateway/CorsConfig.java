@@ -4,15 +4,22 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.cors.reactive.CorsConfigurationSource;
+import org.springframework.web.cors.reactive.CorsWebFilter;
 import org.springframework.web.filter.CorsFilter;
 
 import java.util.List;
 
 @Configuration
 public class CorsConfig {
+
     @Bean
-    public CorsFilter corsFilter() {
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    public CorsWebFilter corsWebFilter() {
+        return new CorsWebFilter(corsConfigurationSource());
+    }
+
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
         config.setAllowedOrigins(List.of(
@@ -28,7 +35,10 @@ public class CorsConfig {
         config.addAllowedHeader("*");
         config.addExposedHeader("*");
         config.setMaxAge(3600L);
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
-        return new CorsFilter(source);
+
+        return (CorsConfigurationSource) source;
     }
 }
