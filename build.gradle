@@ -23,7 +23,7 @@ ext {
 
 dependencies {
     // Circuit Breaker (장애 감지 & 트래픽 차단)
-    implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-reactor-resilience4j'
+//    implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-reactor-resilience4j'
 
     // Spring Boot WebFlux (Gateway는 WebFlux 기반)
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
@@ -34,8 +34,8 @@ dependencies {
     // Eureka Client (서비스 디스커버리)
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 
-    // Actuator (모니터링)
-    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+//    // Actuator (모니터링)
+//    implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
     // Lombok
     compileOnly 'org.projectlombok:lombok'
