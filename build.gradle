@@ -41,6 +41,9 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 
+    // Jakarta Servlet API 추가 (혹시 모를 의존성 문제 해결)
+    implementation 'jakarta.servlet:jakarta.servlet-api:6.0.0'
+
     // boot, junit
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
