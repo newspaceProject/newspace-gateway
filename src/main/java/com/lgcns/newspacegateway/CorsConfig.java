@@ -3,9 +3,8 @@ package com.lgcns.newspacegateway;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.cors.reactive.CorsConfigurationSource;
 import org.springframework.web.cors.reactive.CorsWebFilter;
+import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 import java.util.List;
@@ -15,6 +14,9 @@ public class CorsConfig {
 
     @Bean
     public CorsWebFilter corsWebFilter() {
+        // ✅ WebFlux에서는 UrlBasedCorsConfigurationSource(reactive)를 사용해야 함
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
         config.setAllowedOrigins(List.of(
@@ -31,9 +33,8 @@ public class CorsConfig {
         config.addExposedHeader("*");
         config.setMaxAge(3600L);
 
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
 
-        return new CorsWebFilter((CorsConfigurationSource) source);
+        return new CorsWebFilter(source);  // ✅ 올바른 WebFlux CORS 필터
     }
 }
