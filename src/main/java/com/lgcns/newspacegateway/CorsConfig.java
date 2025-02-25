@@ -22,6 +22,7 @@ public class CorsConfig {
                 "http://kudong.kr:55023",
                 "http://kudong.kr:55025",
                 "http://localhost:8080",
+                "http://localhost:8070",
                 "http://localhost:5173"));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
         config.addAllowedHeader("*");
